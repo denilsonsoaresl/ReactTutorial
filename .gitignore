@@ -1,0 +1,16 @@
+# Ignorar arquivos de sistema
+.DS_Store
+Thumbs.db
+
+# Ignorar diretórios de build/output
+build/
+dist/
+
+# Ignorar arquivos de dependências
+node_modules/
+venv/
+__pycache__/
+
+# Ignorar arquivos de configuração de IDE
+.vscode/
+.idea/
