@@ -1,8 +1,16 @@
+import { useState } from 'react';
+import Sidebar from './components/Sidebar.jsx';
+import Main from './components/Main.jsx';
+import './index.css'; 
+
 function App() {
+  const [projects, setProjects] = useState([]);
+
   return (
-    <>
-      <h1 className="my-8 text-center text-5xl font-bold">Hello World</h1>
-    </>
+    <div className="app-container">  {/* Contêiner pai com display flex */}
+      <Sidebar projects={projects} />
+      <Main projects={projects} />
+    </div>
   );
 }
 
