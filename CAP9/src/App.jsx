@@ -1,31 +1,58 @@
 import { useState } from 'react';
 import Sidebar from './components/Sidebar.jsx';
-import './index.css'; 
 import Principal from './components/Principal.jsx';
+import './index.css'; 
 
 function App() {
   const [projects, setProjects] = useState([]);
   const [selectedProject, setSelectedProject] = useState(null);
+  const [view, setView] = useState("home"); // "home", "create", "edit", "view"
 
-  function addProject(name) {
+  function addProject(projectDetails) {
     const newProject = {
       id: projects.length + 1,
-      name,
+      ...projectDetails,
       date_of_creation: new Date().toLocaleDateString(),
     };
     setProjects([...projects, newProject]);
+    setSelectedProject(newProject);
+    setView("view");
+  }
+
+  function selectProject(project) {
+    setSelectedProject(project);
+    setView("view");
+  }
+
+  function handleEditProject(updatedProject) {
+    setProjects(projects.map(proj => proj.id === updatedProject.id ? updatedProject : proj));
+    setSelectedProject(updatedProject);
+    setView("view");
+  }
+
+  function handleAddProjectClick() {
+    setSelectedProject(null);
+    setView("create");
+  }
+  function handleHome() {
+    setSelectedProject(null);
+    setView("home");
   }
 
   return (
     <div className="app-container">
       <Sidebar 
         projects={projects} 
-        onAddProject={addProject} 
-        onSelectProject={setSelectedProject}
+        onSelectProject={selectProject}
+        onAddProjectClick={handleAddProjectClick}
+        onHome={handleHome}
       />
       <Principal 
-        onAddProject={addProject}
+        view={view}
+        setView={setView}
         selectedProject={selectedProject}
+        onAddProject={addProject}
+        onEditProject={handleEditProject}
       />
     </div>
   );
