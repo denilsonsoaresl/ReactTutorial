@@ -1,6 +1,6 @@
 import Project from './Project';
 
-export default function Main({ selectedProject }) {
+export default function Principal({ selectedProject }) {
   return (
     <div className="main-content">
       {selectedProject ? (

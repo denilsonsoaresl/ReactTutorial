@@ -1,13 +1,9 @@
-import { useState, useRef } from "react";
-
-export default function Project({project}) {
+export default function Project({ project }) {
+    return (
+      <>
+        <h1>{project.name}</h1>
+        <p>{project.date_of_creation}</p>
+      </>
+    );
+  }
   
-  return (
-   <>
-    <h1>{project.name}</h1>
-    {project.date_of_creation}
-    
-
-   </>
-  );
-}
